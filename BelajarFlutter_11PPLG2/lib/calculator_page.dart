@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:login_app/components/my_textfield.dart';
 import 'package:login_app/components/my_button.dart';
+import 'package:login_app/components/my_text.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
@@ -115,9 +116,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
             const SizedBox(height: 24),
 
             // Tampilan Hasil
-            Text(
-              'Hasil: $hasil',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            MyText(
+              text: "Hasil: " + hasil,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           ],
         ),

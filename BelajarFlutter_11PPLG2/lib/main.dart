@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'calculator_page.dart'; // Import file calculator_page.dart yang baru dibuat
+import 'calculator_page.dart';
 
 void main() {
   runApp(const MyApp());

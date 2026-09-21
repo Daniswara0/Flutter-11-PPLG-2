@@ -9,7 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Ditambahkan 'final' sebagai praktik pembuatan controller yang baik
   final TextEditingController txtUsername = TextEditingController();
   final TextEditingController txtPassword = TextEditingController();
   String statusLogin = "";
@@ -31,7 +30,6 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 1. 'const' dihapus dari Text dan menggunakan interpolation $statusLogin
             Text(
               "Selamat Datang" + statusLogin,
               style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
@@ -39,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 32),
 
-            // Input Email / Username
             MyTextField(
               hintText: "Masukkan username Anda",
               controller: txtUsername,
@@ -59,13 +56,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 24),
 
-            // Tombol Login
             ElevatedButton(
               onPressed: () {
                 String username = txtUsername.text;
                 String password = txtPassword.text;
 
-                // 2. Dibungkus setState agar perubahan variabel merender ulang layar
                 setState(() {
                   if (username == "admin" && password == "admin") {
                     print("Login Berhasil");
