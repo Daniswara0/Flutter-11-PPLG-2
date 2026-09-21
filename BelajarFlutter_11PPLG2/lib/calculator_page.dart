@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Diperlukan untuk FilteringTextInputFormatter
+import 'package:flutter/services.dart';
+import 'package:login_app/components/my_textfield.dart';
+import 'package:login_app/components/my_button.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
@@ -9,14 +11,49 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
-  final TextEditingController _numberoneController = TextEditingController();
-  final TextEditingController _numbertwoController = TextEditingController();
+  final TextEditingController txtAngka1 = TextEditingController();
+  final TextEditingController txtAngka2 = TextEditingController();
+  String hasil = "0";
 
   @override
   void dispose() {
-    _numberoneController.dispose();
-    _numbertwoController.dispose();
+    txtAngka1.dispose();
+    txtAngka2.dispose();
     super.dispose();
+  }
+
+
+  void hitung(String operasi) {
+    double? angka1 = double.tryParse(txtAngka1.text);
+    double? angka2 = double.tryParse(txtAngka2.text);
+
+    if (angka1 == null || angka2 == null) {
+      setState(() {
+        hasil = "Input tidak valid";
+      });
+      return;
+    }
+
+    setState(() {
+      switch (operasi) {
+        case '+':
+          hasil = (angka1 + angka2).toString();
+          break;
+        case '-':
+          hasil = (angka1 - angka2).toString();
+          break;
+        case 'x':
+          hasil = (angka1 * angka2).toString();
+          break;
+        case ':':
+          if (angka2 == 0) {
+            hasil = "Tidak bisa dibagi 0";
+          } else {
+            hasil = (angka1 / angka2).toString();
+          }
+          break;
+      }
+    });
   }
 
   @override
@@ -30,49 +67,57 @@ class _CalculatorPageState extends State<CalculatorPage> {
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-            TextField(
-              controller: _numberoneController,
+
+            MyTextField(
+              hintText: 'Input Number One',
+              controller: txtAngka1,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: const InputDecoration(
-                labelText: 'Input Number One',
-                border: OutlineInputBorder(),
-              ),
             ),
             const SizedBox(height: 16),
 
-            TextField(
-              controller: _numbertwoController,
+            MyTextField(
+              hintText: 'Input Number Two',
+              controller: txtAngka2,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: const InputDecoration(
-                labelText: 'Input Number Two',
-                border: OutlineInputBorder(),
-              ),
             ),
             const SizedBox(height: 24),
 
-
+            // Tombol Operasi
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('+'),
+                MyButton(
+                  text: '+',
+                  onPressed: () => hitung('+'),
+                  backgroundColor: const Color.fromARGB(255, 0, 213, 255),
+                  textColor: Colors.white,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('-'),
+                MyButton(
+                  text: '-',
+                  onPressed: () => hitung('-'),
+                  backgroundColor: const Color.fromARGB(255, 243, 70, 96),
+                  textColor: Colors.white,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('x'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(':'),
+                MyButton(text: 'x', 
+                onPressed: () => hitung('x'),
+                backgroundColor: const Color.fromARGB(255, 130, 201, 133),
+                textColor: Colors.white,),
+                MyButton(
+                  text: ':',
+                  onPressed: () => hitung(':'),
+                  backgroundColor: const Color.fromARGB(255, 255, 200, 0),
+                  textColor: Colors.white,
                 ),
               ],
+            ),
+            const SizedBox(height: 24),
+
+            // Tampilan Hasil
+            Text(
+              'Hasil: $hasil',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ],
         ),
