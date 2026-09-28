@@ -24,9 +24,40 @@ class MyTextField extends StatelessWidget {
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       obscureText: obscureText,
+      style: const TextStyle(
+        color: Color(0xFF5A4A5A),
+        fontWeight: FontWeight.w600,
+      ),
       decoration: InputDecoration(
         hintText: hintText,
-        border: const OutlineInputBorder(),
+        hintStyle: TextStyle(
+          color: Colors.purple.shade200,
+          fontSize: 14,
+        ),
+        filled: true,
+        fillColor: const Color(0xFFFAF0F6), 
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 16,
+        ),
+
+        
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(
+            color: Color(0xFFF8BBD0), 
+            width: 1.5,
+          ),
+        ),
+
+        
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(
+            color: Color(0xFFEC407A), 
+            width: 2,
+          ),
+        ),
       ),
     );
   }
