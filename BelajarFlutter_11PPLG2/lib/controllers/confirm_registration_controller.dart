@@ -4,6 +4,7 @@ class ConfirmRegistrationController extends GetxController {
   late String nama;
   late String email;
   late String jenisKelamin;
+  late String agama;
   late String nomer;
   late String alamat;
   late String password;
@@ -14,12 +15,13 @@ class ConfirmRegistrationController extends GetxController {
     super.onInit();
     final Map<String, dynamic>? arguments = Get.arguments;
 
-    nama = arguments?["nama"] ?? '-';
-    email = arguments?["email"] ?? '-';
-    jenisKelamin = arguments?["jenisKelamin"] ?? '-';
-    nomer = arguments?["nomer"] ?? '-';
-    alamat = arguments?["alamat"] ?? '-';
-    password = arguments?["password"] ?? '-';
-    confirmPassword = arguments?["confirmPassword"] ?? '-';
+    nama = arguments?['nama'] ?? '-';
+    email = arguments?['email'] ?? '-';
+    jenisKelamin = arguments?['jenisKelamin'] ?? '-';
+    agama = arguments?['agama'] ?? '-';
+    nomer = arguments?['nomer'] ?? '-';
+    alamat = arguments?['alamat'] ?? '-';
+    password = arguments?['password'] ?? '-';
+    confirmPassword = arguments?['confirmPassword'] ?? '-';
   }
 }
