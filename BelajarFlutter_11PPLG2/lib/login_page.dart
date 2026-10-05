@@ -1,85 +1,73 @@
 import 'package:flutter/material.dart';
-import 'components/My_TextField.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class MyButton extends StatefulWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final double borderRadius;
+
+  const MyButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.backgroundColor,
+    this.textColor,
+    this.borderRadius = 12.0,
+  });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<MyButton> createState() => _MyButtonState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController txtUsername = TextEditingController();
-  final TextEditingController txtPassword = TextEditingController();
-  String statusLogin = "";
-
-  @override
-  void dispose() {
-    txtUsername.dispose();
-    txtPassword.dispose();
-    super.dispose();
-  }
+class _MyButtonState extends State<MyButton> {
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Login System'), centerTitle: true),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "Selamat Datang" + statusLogin,
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
+    final effectiveBgColor = widget.backgroundColor ?? const Color(0xFFEC407A);
+    final effectiveTextColor = widget.textColor ?? Colors.white;
 
-            MyTextField(
-              hintText: "Masukkan username Anda",
-              controller: txtUsername,
-            ),
-            const SizedBox(height: 16),
-
-            // Input Password
-            TextField(
-              controller: txtPassword,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                hintText: 'Masukkan password Anda',
-                prefixIcon: Icon(Icons.lock),
-                border: OutlineInputBorder(),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedScale(
+        scale: _isHovered ? 1.03 : 1.0,
+        duration: const Duration(milliseconds: 150),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            boxShadow: [
+              BoxShadow(
+                color: effectiveBgColor.withOpacity(_isHovered ? 0.4 : 0.15),
+                blurRadius: _isHovered ? 10 : 4,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: ElevatedButton(
+            onPressed: widget.onPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _isHovered
+                  ? effectiveBgColor.withOpacity(0.85)
+                  : effectiveBgColor,
+              foregroundColor: effectiveTextColor,
+              elevation: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
             ),
-            const SizedBox(height: 24),
-
-            ElevatedButton(
-              onPressed: () {
-                String username = txtUsername.text;
-                String password = txtPassword.text;
-
-                setState(() {
-                  if (username == "admin" && password == "admin") {
-                    print("Login Berhasil");
-                    statusLogin = "Admin";
-                  } else {
-                    print("Login Gagal");
-                    statusLogin = "(Gagal)";
-                  }
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: const Text(
-                "Login",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            child: Text(
+              widget.text,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: effectiveTextColor,
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
