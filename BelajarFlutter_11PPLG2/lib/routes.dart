@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'pages/confirm_registration_page.dart';
 import 'pages/registration_page.dart';
+import 'pages/list_makanan_page.dart';
 
 abstract class Routes {
   static const String registration = '/registration';
   static const String confirmRegistration = '/confirm_registration';
+  static const String listMakanan = '/list_makanan';
 
   static final List<GetPage> myPages = [
     GetPage(
@@ -14,6 +16,10 @@ abstract class Routes {
     GetPage(
       name: confirmRegistration,
       page: () => ConfirmRegistrationPage(),
+    ),
+    GetPage(
+      name: listMakanan,
+      page: () => ListMakananPage(),
     ),
   ];
 }

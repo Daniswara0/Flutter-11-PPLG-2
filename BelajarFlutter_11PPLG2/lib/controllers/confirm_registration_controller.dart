@@ -13,15 +13,15 @@ class ConfirmRegistrationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    final Map<String, dynamic>? arguments = Get.arguments;
+    final arguments = Get.arguments;
 
-    nama = arguments?['nama'] ?? '-';
-    email = arguments?['email'] ?? '-';
-    jenisKelamin = arguments?['jenisKelamin'] ?? '-';
-    agama = arguments?['agama'] ?? '-';
-    nomer = arguments?['nomer'] ?? '-';
-    alamat = arguments?['alamat'] ?? '-';
-    password = arguments?['password'] ?? '-';
-    confirmPassword = arguments?['confirmPassword'] ?? '-';
+    nama = arguments['nama'];
+    email = arguments['email'];
+    jenisKelamin = arguments['jenisKelamin'];
+    agama = arguments['agama'];
+    nomer = arguments['nomer'];
+    alamat = arguments['alamat'];
+    password = arguments['password'];
+    confirmPassword = arguments['confirmPassword'];
   }
 }

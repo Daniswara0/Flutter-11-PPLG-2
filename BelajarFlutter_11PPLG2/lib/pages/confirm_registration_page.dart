@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'list_makanan_page.dart';
 import '../components/my_button.dart';
 import '../components/my_text.dart';
 import '../controllers/confirm_registration_controller.dart';
@@ -27,10 +28,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
-                side: const BorderSide(
-                  color: Color(0xFFE2E8F0),
-                  width: 1.2,
-                ),
+                side: const BorderSide(color: Color(0xFFE2E8F0), width: 1.2),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -62,7 +60,16 @@ class ConfirmRegistrationPage extends StatelessWidget {
             MyButton(
               text: 'Kembali Ke Registration',
               onPressed: () => Get.back(),
-              backgroundColor: const Color(0xFF6366F1),
+              backgroundColor: const Color.fromARGB(255, 157, 157, 157),
+              textColor: Colors.white,
+            ),
+            const SizedBox(height: 12),
+
+            MyButton(
+              text: "Lihat Menu Makanan",
+              onPressed: () =>
+                  Get.off(() => ListMakananPage()),
+              backgroundColor: const Color.fromARGB(255, 255, 183, 82),
               textColor: Colors.white,
             ),
           ],
