@@ -7,6 +7,7 @@ class MyCard extends StatelessWidget {
   final String? price;      // Opsional (nullable)
   final String? rating;     // Opsional (nullable)
   final String? imageUrl;   // Opsional (nullable)
+  final IconData? icon;     // Baru: Icon opsional (bisa diisi Icons.home_outlined, dll)
   final VoidCallback? onTap;
 
   const MyCard({
@@ -17,6 +18,7 @@ class MyCard extends StatelessWidget {
     this.price,
     this.rating,
     this.imageUrl,
+    this.icon,            // Baru: Ditambahkan ke constructor
     this.onTap,
   }) : super(key: key);
 
@@ -35,7 +37,17 @@ class MyCard extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: [
-              // 1. Gambar Persegi di Samping Kiri
+              // 1. Icon di Samping Kiri (Jika diisi)
+              if (icon != null) ...[
+                Icon(
+                  icon,
+                  size: 24,
+                  color: Colors.grey[700],
+                ),
+                const SizedBox(width: 12),
+              ],
+
+              // 2. Gambar Persegi di Samping Kiri (Jika diisi)
               if (imageUrl != null) ...[
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
@@ -55,7 +67,7 @@ class MyCard extends StatelessWidget {
                 const SizedBox(width: 12),
               ],
               
-              // 2. Nama di Atas, Harga di Bawah Nama
+              // 3. Nama di Atas, Harga di Bawah Nama
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

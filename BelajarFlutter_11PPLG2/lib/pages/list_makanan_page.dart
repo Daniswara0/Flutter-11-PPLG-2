@@ -3,7 +3,7 @@ import '../components/my_text.dart';
 import '../controllers/list_makanan_controller.dart';
 import 'package:get/get.dart';
 import '../components/my_card.dart';
-import 'detail_list_makanan_page.dart';
+import '../routes.dart';
 
 class ListMakananPage extends StatelessWidget {
   ListMakananPage({super.key});
@@ -21,14 +21,15 @@ class ListMakananPage extends StatelessWidget {
         margin: EdgeInsets.all(16.0),
         child: ListView.builder(
           itemCount: controller.dataMakanan.length,
-          itemBuilder: (context, index) { //ini adalah contoh penggunaan ListView.builder untuk menampilkan daftar makanan
+          itemBuilder: (context, index) {  
           final makanan = controller.dataMakanan[index];
             return MyCard(
               title: makanan.namaMakanan,
               subtitle: makanan.hargaMakanan,
               imageUrl: makanan.gambarMakanan,
               onTap: () {
-                Get.to(() => DetailMakananPage(), arguments: makanan);
+                Get.toNamed(Routes.detailMakanan, 
+                arguments: makanan);
               },
             );
           },

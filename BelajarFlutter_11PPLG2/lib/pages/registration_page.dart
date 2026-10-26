@@ -7,6 +7,7 @@ import '../components/my_text.dart';
 import '../components/my_dropdown.dart';
 import '../components/my_switch.dart';
 import '../controllers/registration_controller.dart';
+import '../routes.dart';
 
 class RegistrationPage extends StatelessWidget {
   RegistrationPage({super.key});
@@ -20,7 +21,7 @@ class RegistrationPage extends StatelessWidget {
         title: const MyText(text: 'Halaman Registrasi'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
@@ -95,7 +96,7 @@ class RegistrationPage extends StatelessWidget {
                   text: 'Daftar',
                   onPressed: () {
                     Get.toNamed(
-                      '/confirm_registration',
+                      Routes.mainMenu,
                       arguments: {
                         'nama': controller.txtUsername.text,
                         'email': controller.txtEmail.text,

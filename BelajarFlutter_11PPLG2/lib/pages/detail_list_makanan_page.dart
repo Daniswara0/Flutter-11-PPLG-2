@@ -14,7 +14,7 @@ class DetailMakananPage extends StatelessWidget {
         title: Text(controller.makanan.namaMakanan),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,24 +30,21 @@ class DetailMakananPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [ 
                     Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          controller.makanan.gambarMakanan,
+                      child: Image.network(
+                        controller.makanan.gambarMakanan,
+                        width: 180,
+                        height: 180,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
                           width: 180,
                           height: 180,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            width: 180,
-                            height: 180,
-                            color: Colors.grey[300],
-                            child: const Center(
-                              child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
-                            ),
+                          color: Colors.grey[300],
+                          child: const Center(
+                            child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
                           ),
                         ),
                       ),
-                    ),
+                    ), const SizedBox(height: 16),
                     const SizedBox(height: 16), 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

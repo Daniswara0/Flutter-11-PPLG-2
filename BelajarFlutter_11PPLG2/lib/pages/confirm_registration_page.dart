@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'list_makanan_page.dart';
 import '../components/my_button.dart';
 import '../components/my_text.dart';
 import '../controllers/confirm_registration_controller.dart';
+import '../routes.dart';
 
 class ConfirmRegistrationPage extends StatelessWidget {
   ConfirmRegistrationPage({super.key});
@@ -18,7 +18,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
+      body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -40,18 +40,18 @@ class ConfirmRegistrationPage extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
-                    const Divider(height: 24, thickness: 1),
-                    MyText(text: 'Nama Lengkap: ${controller.nama}'),
                     const SizedBox(height: 10),
-                    MyText(text: 'Email: ${controller.email}'),
+                    MyText(text: "Nama Lengkap: " + controller.nama),
                     const SizedBox(height: 10),
-                    MyText(text: 'Jenis Kelamin: ${controller.jenisKelamin}'),
+                    MyText(text: "Email: " + controller.email),
                     const SizedBox(height: 10),
-                    MyText(text: 'Agama: ${controller.agama}'),
+                    MyText(text: "Jenis Kelamin: " + controller.jenisKelamin),
                     const SizedBox(height: 10),
-                    MyText(text: 'Nomor Telepon: ${controller.nomer}'),
+                    MyText(text: "Agama: " + controller.agama),
                     const SizedBox(height: 10),
-                    MyText(text: 'Alamat: ${controller.alamat}'),
+                    MyText(text: "Nomor Telepon: " + controller.nomer),
+                    const SizedBox(height: 10),
+                    MyText(text: "Alamat: " + controller.alamat),
                   ],
                 ),
               ),
@@ -68,7 +68,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
             MyButton(
               text: "Lihat Menu Makanan",
               onPressed: () =>
-                  Get.off(() => ListMakananPage()),
+                  Get.offNamed(Routes.listMakanan),
               backgroundColor: const Color.fromARGB(255, 255, 183, 82),
               textColor: Colors.white,
             ),

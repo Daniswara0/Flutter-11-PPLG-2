@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:login_app/models/list_makanan_model.dart';
 
 class ListMakananController extends GetxController{
-  // data makanan (hardcode)
 
   List<ListMakananModel> dataMakanan = [
     ListMakananModel(namaMakanan: "Bakso", hargaMakanan: "18.000", deskripsiMakanan: "Bakso sapi dengan kuah yang lezat", gambarMakanan: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Nwy9f3_BASZPv_VphngKEFDzrb4GYj1I3IMTMrU4fg&s=10", ratingMakanan: "4.5"),
@@ -13,5 +12,5 @@ class ListMakananController extends GetxController{
     ListMakananModel(namaMakanan: "Ayam Goreng", hargaMakanan: "18.000", deskripsiMakanan: "Ayam goreng dengan bumbu khas Indonesia", gambarMakanan: "https://www.dapurkobe.co.id/wp-content/uploads/ayam-goreng-lengkuas.jpg", ratingMakanan: "4.3"),
     ListMakananModel(namaMakanan: "Soto Ayam", hargaMakanan: "15.000", deskripsiMakanan: "Soto ayam dengan kuah bening yang segar", gambarMakanan: "https://www.dapurkobe.co.id/wp-content/uploads/soto-ayam.jpg", ratingMakanan: "4.1"),
     ListMakananModel(namaMakanan: "Sop Kaki Kambing", hargaMakanan: "30.000", deskripsiMakanan: "Sop kaki kambing dengan bumbu rempah yang kaya", gambarMakanan: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6z945ApMxkwr4xYbk2ZBQwFTRhcsHh3UlqhJ5_J2OQ4_F5uS0SMA032I&s=10", ratingMakanan: "4.6"),
-  ];
+  ].obs;
 } 
